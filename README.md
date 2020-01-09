@@ -1,6 +1,6 @@
 # Magento 2 Code Review Comments
 
-This repository contains code review comments for Magento 2 development
+This repository contains code review comments for Magento 2 development.
 
 ## Usage
 
