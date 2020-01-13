@@ -15,4 +15,14 @@ Code should be formatted according to PSR-12. Using a common code style makes it
 Magento prohibits the direct use of the ObjectManager in your code because it hides the real dependencies of a class. Any required classes should be added as dependencies using [constructor dependency injection](https://en.wikipedia.org/wiki/Dependency_injection#Constructor_injection_comparison). There are some exceptions, you can find them[ on the dedicated site about using the Object Manager](https://devdocs.magento.com/guides/v2.3/extension-dev-guide/object-manager.html). 
 
 ## PSR-3 Logger Exceptions
-When logging an exception, the `\Throwable` must be passed as a member of the logger context, named `exception`. [The PSR-3 document requires this](https://www.php-fig.org/psr/psr-3/#13-context), and it gives valuable context to whoever is debugging your application, and gives your exception objects more utility.
+When logging an exception, the `\Throwable` should in almost all cases be passed as a member of the logger context, named `exception`. [The PSR-3 document recommends this](https://www.php-fig.org/psr/psr-3/#13-context), and it gives valuable context to your logs, in addition to giving your exception objects more utility.
+
+For example, don't write:
+```php
+$logger->error($e->getMessage());
+```
+
+Instead, write:
+```php
+$logger->error("An error occurred when doing X: {message}", ['exception' => $e, 'message' => $e->getMessage()]);
+```
