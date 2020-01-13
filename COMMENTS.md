@@ -24,5 +24,8 @@ $logger->error($e->getMessage());
 
 Instead, write:
 ```php
-$logger->error("An error occurred when doing X: {message}", ['exception' => $e, 'message' => $e->getMessage()]);
+$logger->error(
+    "Doing X: {message}", 
+    ['exception' => $e, 'message' => $e->getMessage()]
+);
 ```
